@@ -3,11 +3,33 @@ service: serverless
 provider:
   name: aws
   runtime: nodejs8.10
-  profile: femasters
-  region: us-west-1
+  profile: default
+  region: eu-west-1
   stage: dev
 
 plugins:
   - serverless-offline
+  - serverless-dotenv-plugin
 
-    
+functions:
+  stripe:
+    handler: src/api/stripe.handler
+    environment:
+      STRIPE_SK: ${env:STRIPE_SECRET_KEY}
+    events:
+      - http:
+          path: stripe/{amount}
+          method: GET
+          cors:
+            origin: "*" # <-- Specify allowed origin
+            headers: # <-- Specify allowed headers
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
+          request:
+            parameters:
+              amount: true
