@@ -1,8 +1,10 @@
 {
   "dependencies": {
     "express": "^4.16.3",
+    "serverless-dotenv-plugin": "^2.1.1",
     "serverless-http": "^1.5.5",
-    "serverless-offline": "^3.20.2"
+    "serverless-offline": "^3.20.2",
+    "stripe": "^7.11.0"
   },
   "scripts": {
     "dev": "sls offline start --port 4500",
