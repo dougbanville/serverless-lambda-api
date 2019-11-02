@@ -18,7 +18,7 @@ functions:
       STRIPE_SK: ${env:STRIPE_SECRET_KEY}
     events:
       - http:
-          path: stripe/{amount}
+          path: stripe/{amount}/{currency}
           method: GET
           cors:
             origin: "*" # <-- Specify allowed origin
@@ -33,3 +33,4 @@ functions:
           request:
             parameters:
               amount: true
+              currency: true

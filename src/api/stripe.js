@@ -3,9 +3,11 @@ const stripe = require("stripe")(process.env.STRIPE_SK);
 module.exports.handler = async (event, ctx) => {
   console.log(event.pathParameters.amount);
   let amount = event.pathParameters.amount;
+  let currency = event.pathParameters.currency;
+
   const paymentIntent = await stripe.paymentIntents.create({
     amount: amount,
-    currency: "eur"
+    currency: currency
   });
 
   const response = {
@@ -14,7 +16,7 @@ module.exports.handler = async (event, ctx) => {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Credentials": true
     },
-    body: JSON.stringify({ paymentIntent: paymentIntent.id })
+    body: JSON.stringify({ paymentIntent: paymentIntent.client_secret })
   };
 
   return response;
