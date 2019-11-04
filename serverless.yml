@@ -21,7 +21,7 @@ functions:
           path: stripe/{amount}/{currency}
           method: GET
           cors:
-            origin: "*" # <-- Specify allowed origin
+            origin: "https://app.hi-ya.com" # <-- Specify allowed origin
             headers: # <-- Specify allowed headers
               - Content-Type
               - X-Amz-Date

@@ -13,7 +13,7 @@ module.exports.handler = async (event, ctx) => {
   const response = {
     statusCode: 200,
     headers: {
-      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": "https://app.hi-ya.com",
       "Access-Control-Allow-Credentials": true
     },
     body: JSON.stringify({ paymentIntent: paymentIntent.client_secret })
